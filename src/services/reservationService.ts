@@ -25,12 +25,8 @@ export interface Reservation {
   city: string;
 }
 
-// Arreglo para almacenar las reservas (simulación)
 const mockReservations: Reservation[] = [];
 
-/**
- * Simula la obtención de las reservas existentes.
- */
 export const fetchReservations = (): Promise<Reservation[]> => {
   return new Promise((resolve) => {
     setTimeout(() => {
@@ -39,9 +35,6 @@ export const fetchReservations = (): Promise<Reservation[]> => {
   });
 };
 
-/**
- * Crea una nueva reserva y la almacena en el mock.
- */
 export const createReservation = (reservation: Reservation): Promise<Reservation> => {
   return new Promise((resolve) => {
     setTimeout(() => {

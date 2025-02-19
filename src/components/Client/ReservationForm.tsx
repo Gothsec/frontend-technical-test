@@ -11,7 +11,6 @@ const ReservationForm = () => {
   const { state } = useLocation();
   const navigate = useNavigate();
 
-  // Datos recibidos desde la selección de habitación
   const {
     hotelId,
     roomId,
@@ -21,9 +20,7 @@ const ReservationForm = () => {
     persons
   } = state || {};
 
-  // Estado para los pasajeros
   const [passengers, setPassengers] = useState<Passenger[]>(() => {
-    // Inicializamos un array con la longitud de "persons"
     return Array.from({ length: persons }, () => ({
       firstName: '',
       lastName: '',
@@ -36,25 +33,21 @@ const ReservationForm = () => {
     }));
   });
 
-  // Estado para contacto de emergencia
   const [emergencyContact, setEmergencyContact] = useState<EmergencyContact>({
     fullName: '',
     phone: ''
   });
 
-  // Manejo de cambios en el formulario de pasajeros
   const handlePassengerChange = (index: number, field: keyof Passenger, value: string) => {
     const updated = [...passengers];
     updated[index] = { ...updated[index], [field]: value };
     setPassengers(updated);
   };
 
-  // Manejo de cambios en el contacto de emergencia
   const handleEmergencyChange = (field: keyof EmergencyContact, value: string) => {
     setEmergencyContact({ ...emergencyContact, [field]: value });
   };
 
-  // Al enviar el formulario
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const newReservation: Reservation = {
@@ -68,14 +61,11 @@ const ReservationForm = () => {
       emergencyContact
     };
 
-    // Creamos la reserva (mock)
     await createReservation(newReservation);
 
-    // Navegamos a la página de éxito
     navigate('/success');
   };
 
-  // Si faltan datos básicos, retornamos un mensaje
   if (!hotelId || !roomId || !checkIn || !checkOut) {
     return (
       <div className="min-h-screen flex items-center justify-center">
