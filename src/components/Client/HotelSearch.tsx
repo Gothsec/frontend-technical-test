@@ -30,13 +30,12 @@ const HotelSearch = () => {
 
   return (
     <div className="min-h-screen bg-gray-100 flex flex-col">
-      {/* Header */}
       <header className="bg-white shadow">
         <div className="container mx-auto px-4 py-4 flex justify-between items-center">
           <h1 className="text-2xl font-bold text-indigo-600">Hotel App</h1>
           <button
             onClick={() => navigate('/login')}
-            className="bg-indigo-500 text-white px-4 py-2 rounded hover:bg-indigo-600 transition"
+            className="bg-indigo-500 text-white px-4 py-2 rounded-lg hover:bg-indigo-600 transition"
           >
             Iniciar Sesión como Agente
           </button>
@@ -50,7 +49,7 @@ const HotelSearch = () => {
           </h2>
           <form
             onSubmit={handleSubmit}
-            className="bg-white shadow-md rounded-lg p-8 w-full max-w-lg"
+            className="bg-white shadow-md rounded-xl p-8 w-full max-w-lg"
           >
             <div className="mb-6">
               <label htmlFor="city" className="block text-gray-700 font-medium mb-2">
@@ -61,7 +60,7 @@ const HotelSearch = () => {
                 id="city"
                 value={city}
                 onChange={(e) => setCity(e.target.value)}
-                className="w-full border border-gray-300 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500"
                 placeholder="Ingresa la ciudad"
                 required
               />
@@ -76,7 +75,7 @@ const HotelSearch = () => {
                   id="checkIn"
                   value={checkIn}
                   onChange={(e) => setCheckIn(e.target.value)}
-                  className="w-full border border-gray-300 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                  className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500"
                   required
                 />
               </div>
@@ -89,7 +88,7 @@ const HotelSearch = () => {
                   id="checkOut"
                   value={checkOut}
                   onChange={(e) => setCheckOut(e.target.value)}
-                  className="w-full border border-gray-300 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                  className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500"
                   required
                 />
               </div>
@@ -103,14 +102,14 @@ const HotelSearch = () => {
                 id="persons"
                 value={persons}
                 onChange={(e) => setPersons(Number(e.target.value))}
-                className="w-full border border-gray-300 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500"
                 min={1}
                 required
               />
             </div>
             <button
               type="submit"
-              className="w-full bg-indigo-600 text-white font-semibold py-3 px-4 rounded hover:bg-indigo-700 transition"
+              className="w-full bg-indigo-600 text-white font-semibold py-3 px-4 rounded-lg hover:bg-indigo-700 transition"
             >
               Buscar Hoteles
             </button>
@@ -127,7 +126,7 @@ const HotelSearch = () => {
                       <p className="text-gray-700 mb-4">{hotel.description}</p>
                       <button
                         onClick={() => handleSelectHotel(hotel.id)}
-                        className="bg-indigo-500 text-white px-4 py-2 rounded hover:bg-indigo-600 transition"
+                        className="bg-indigo-500 text-white px-4 py-2 rounded-lg hover:bg-indigo-600 transition"
                       >
                         Ver Habitaciones
                       </button>

@@ -67,9 +67,6 @@ export const updateHotel = async (
   });
 };
 
-/**
- * Alterna el estado de habilitado/deshabilitado de una habitación.
- */
 export const toggleRoomEnabled = async (hotelId: number, roomId: number): Promise<Room | null> => {
   return new Promise((resolve) => {
     setTimeout(() => {
@@ -113,6 +110,35 @@ export const addRoomToHotel = async (
       };
       hotels[hotelIndex].rooms.push(newRoom);
       resolve(newRoom);
+    }, 300);
+  });
+};
+
+export const updateRoom = async (
+  hotelId: number,
+  roomId: number,
+  type: string,
+  location: string,
+  costBase: number,
+  taxes: number
+): Promise<Room | null> => {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      const hotelIndex = hotels.findIndex((h) => h.id === hotelId);
+      if (hotelIndex === -1) {
+        resolve(null);
+        return;
+      }
+      const roomIndex = hotels[hotelIndex].rooms.findIndex((r) => r.id === roomId);
+      if (roomIndex === -1) {
+        resolve(null);
+        return;
+      }
+      hotels[hotelIndex].rooms[roomIndex].type = type;
+      hotels[hotelIndex].rooms[roomIndex].location = location;
+      hotels[hotelIndex].rooms[roomIndex].costBase = costBase;
+      hotels[hotelIndex].rooms[roomIndex].taxes = taxes;
+      resolve(hotels[hotelIndex].rooms[roomIndex]);
     }, 300);
   });
 };
