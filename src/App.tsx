@@ -1,14 +1,31 @@
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
-function App() {
+// Viajero
+import HotelSearch from './components/Client/HotelSearch';
+import RoomsSelection from './components/Client/RoomSelection';
+import ReservationForm from './components/Client/ReservationForm';
+import ReservationSuccess from './components/Client/ReservationSuccess';
 
+// Agente
+import AgentLogin from './components/Agent/AgentLogin';
+import AgentDashboard from './components/Agent/AgentDashboard';
+
+const App = () => {
   return (
-    <>
-    <div className="flex flex-col items-center justify-center h-screen">
-      <h1 className="text-4xl font-bold">Hotel management app</h1>
-      <p className="text-xl">This is a simple hotel management app</p>
-    </div>
-    </>
-  )
-}
+    <BrowserRouter>
+      <Routes>
+        {/* Rutas para el viajero */}
+        <Route path="/" element={<HotelSearch />} />
+        <Route path="/rooms" element={<RoomsSelection />} />
+        <Route path="/reservation" element={<ReservationForm />} />
+        <Route path="/success" element={<ReservationSuccess />} />
 
-export default App
+        {/* Rutas para el agente */}
+        <Route path="/login" element={<AgentLogin />} />
+        <Route path="/dashboard" element={<AgentDashboard />} />
+      </Routes>
+    </BrowserRouter>
+  );
+};
+
+export default App;

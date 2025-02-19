@@ -1,0 +1,61 @@
+[
+  {
+    "id": 1,
+    "name": "Hotel Central",
+    "city": "Medellin",
+    "description": "Hotel céntrico en Medellin.",
+    "enabled": true,
+    "rooms": [
+      {
+        "id": 1,
+        "type": "Sencilla",
+        "location": "Planta Baja",
+        "costBase": 100,
+        "taxes": 20,
+        "enabled": true
+      },
+      {
+        "id": 2,
+        "type": "Doble",
+        "location": "Primer Piso",
+        "costBase": 150,
+        "taxes": 30,
+        "enabled": true
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "name": "Hotel Plaza",
+    "city": "Bogota",
+    "description": "Hotel en el centro de Bogota.",
+    "enabled": true,
+    "rooms": [
+      {
+        "id": 1,
+        "type": "Doble",
+        "location": "Segundo Piso",
+        "costBase": 120,
+        "taxes": 25,
+        "enabled": true
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "name": "Hotel Luna",
+    "city": "Guadalajara de Buga",
+    "description": "Hotel en el centro de Buga.",
+    "enabled": true,
+    "rooms": [
+      {
+        "id": 1,
+        "type": "Sencilla",
+        "location": "Primer Piso",
+        "costBase": 20,
+        "taxes": 30,
+        "enabled": true
+      }
+    ]
+  }
+]
