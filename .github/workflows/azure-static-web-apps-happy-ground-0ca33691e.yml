@@ -29,10 +29,10 @@ jobs:
         id: idtoken
         with:
            script: |
-               const core = require('@actions/core');
-               const idToken = await core.getIDToken();
-               return idToken;
-           result-encoding: string
+              const { getIDToken } = require('@actions/core');
+              const idToken = await getIDToken();
+              return idToken;
+              result-encoding: string
       - name: Build And Deploy
         id: builddeploy
         uses: Azure/static-web-apps-deploy@v1
