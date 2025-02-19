@@ -1,16 +1,8 @@
-// src/services/hotelAgentService.ts
 import hotelsData from '../data/hotels.json';
 import { Hotel, Room } from './hotelService';
 
-/**
- * En este arreglo en memoria almacenaremos los hoteles
- * para simular una base de datos.
- */
 const hotels: Hotel[] = hotelsData as Hotel[];
 
-/**
- * Obtiene la lista completa de hoteles (simulado).
- */
 export const getAgentHotels = async (): Promise<Hotel[]> => {
   return new Promise((resolve) => {
     setTimeout(() => {
@@ -19,10 +11,6 @@ export const getAgentHotels = async (): Promise<Hotel[]> => {
   });
 };
 
-/**
- * Crea un nuevo hotel con los datos básicos (name, city, description).
- * Asigna un ID incremental y habilita el hotel por defecto.
- */
 export const createHotel = async (
   name: string,
   city: string,
@@ -44,9 +32,6 @@ export const createHotel = async (
   });
 };
 
-/**
- * Alterna el estado de habilitado/deshabilitado de un hotel.
- */
 export const toggleHotelEnabled = async (hotelId: number): Promise<Hotel | null> => {
   return new Promise((resolve) => {
     setTimeout(() => {
@@ -61,9 +46,6 @@ export const toggleHotelEnabled = async (hotelId: number): Promise<Hotel | null>
   });
 };
 
-/**
- * Actualiza la información básica de un hotel (nombre, ciudad, descripción).
- */
 export const updateHotel = async (
   hotelId: number,
   name: string,
@@ -107,9 +89,6 @@ export const toggleRoomEnabled = async (hotelId: number, roomId: number): Promis
   });
 };
 
-/**
- * Agrega una nueva habitación a un hotel.
- */
 export const addRoomToHotel = async (
   hotelId: number,
   type: string,

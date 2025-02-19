@@ -1,8 +1,7 @@
-// src/components/Agent/ReservationManagement.tsx
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { fetchReservations, Reservation } from '../../services/reservationService';
 
-const ReservationManagement: React.FC = () => {
+const ReservationManagement = () => {
   const [reservations, setReservations] = useState<Reservation[]>([]);
   const [loading, setLoading] = useState(true);
   const [selectedReservation, setSelectedReservation] = useState<Reservation | null>(null);
@@ -62,7 +61,6 @@ const ReservationManagement: React.FC = () => {
         ))}
       </ul>
 
-      {/* Modal o Sección de Detalle */}
       {selectedReservation && (
         <div className="mt-4 p-4 bg-gray-50 border rounded-lg">
           <h3 className="text-xl font-bold mb-2">Detalle de la Reserva</h3>

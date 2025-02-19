@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { fetchHotels, Hotel } from '../../services/hotelService';
 
-const HotelSearch: React.FC = () => {
+const HotelSearch = () => {
   const [city, setCity] = useState('');
   const [checkIn, setCheckIn] = useState('');
   const [checkOut, setCheckOut] = useState('');
@@ -15,7 +15,6 @@ const HotelSearch: React.FC = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const hotels = await fetchHotels();
-    // Filtramos por ciudad
     const filtered = hotels.filter((hotel: Hotel) =>
       hotel.city.toLowerCase().includes(city.trim().toLowerCase())
     );
@@ -24,7 +23,6 @@ const HotelSearch: React.FC = () => {
   };
 
   const handleSelectHotel = (hotelId: number) => {
-    // Navegamos a la selección de habitación, pasando datos vía state
     navigate(`/rooms`, {
       state: { hotelId, city, checkIn, checkOut, persons },
     });

@@ -1,79 +1,97 @@
-// src/components/Agent/HotelManagement.tsx
-import React, { useEffect, useState } from 'react';
-import { Hotel, Room } from '../../services/hotelService';
+import { useEffect, useState } from 'react';
+import { Hotel } from '../../services/hotelService';
 import {
   getAgentHotels,
   createHotel,
   toggleHotelEnabled,
-  updateHotel,
   toggleRoomEnabled,
   addRoomToHotel
 } from '../../services/hotelAgentService';
 
-const HotelManagement: React.FC = () => {
+const HotelManagement = () => {
   const [hotels, setHotels] = useState<Hotel[]>([]);
   const [loading, setLoading] = useState(true);
 
-  // Estados para crear un nuevo hotel
   const [newHotelName, setNewHotelName] = useState('');
   const [newHotelCity, setNewHotelCity] = useState('');
   const [newHotelDescription, setNewHotelDescription] = useState('');
 
-  // Estados para agregar habitación
   const [selectedHotelId, setSelectedHotelId] = useState<number | null>(null);
   const [roomType, setRoomType] = useState('');
   const [roomLocation, setRoomLocation] = useState('');
   const [roomCostBase, setRoomCostBase] = useState<number>(0);
   const [roomTaxes, setRoomTaxes] = useState<number>(0);
 
+  const loadHotels = async () => {
+    try {
+      setLoading(true);
+      const data = await getAgentHotels();
+      setHotels(data);
+    } catch (error) {
+      console.error('Error al cargar hoteles:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   useEffect(() => {
     loadHotels();
   }, []);
 
-  const loadHotels = async () => {
-    setLoading(true);
-    const data = await getAgentHotels();
-    setHotels(data);
-    setLoading(false);
-  };
-
   const handleCreateHotel = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!newHotelName || !newHotelCity) return;
-    await createHotel(newHotelName, newHotelCity, newHotelDescription);
-    setNewHotelName('');
-    setNewHotelCity('');
-    setNewHotelDescription('');
-    loadHotels();
+    try {
+      await createHotel(newHotelName, newHotelCity, newHotelDescription);
+
+      setNewHotelName('');
+      setNewHotelCity('');
+      setNewHotelDescription('');
+      loadHotels();
+    } catch (error) {
+      console.error('Error al crear hotel:', error);
+    }
   };
 
   const handleToggleHotel = async (hotelId: number) => {
-    await toggleHotelEnabled(hotelId);
-    loadHotels();
+    try {
+      await toggleHotelEnabled(hotelId);
+      loadHotels();
+    } catch (error) {
+      console.error('Error al alternar estado del hotel:', error);
+    }
   };
 
   const handleAddRoom = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!selectedHotelId) return;
-    await addRoomToHotel(
-      selectedHotelId,
-      roomType,
-      roomLocation,
-      roomCostBase,
-      roomTaxes
-    );
-    // Limpiamos estados
-    setSelectedHotelId(null);
-    setRoomType('');
-    setRoomLocation('');
-    setRoomCostBase(0);
-    setRoomTaxes(0);
-    loadHotels();
+    try {
+      await addRoomToHotel(
+        selectedHotelId,
+        roomType,
+        roomLocation,
+        roomCostBase,
+        roomTaxes
+      );
+
+      setSelectedHotelId(null);
+      setRoomType('');
+      setRoomLocation('');
+      setRoomCostBase(0);
+      setRoomTaxes(0);
+      loadHotels();
+    } catch (error) {
+      console.error('Error al agregar habitación:', error);
+    }
   };
 
   const handleToggleRoom = async (hotelId: number, roomId: number) => {
-    await toggleRoomEnabled(hotelId, roomId);
-    loadHotels();
+    try {
+      await toggleRoomEnabled(hotelId, roomId);
+      loadHotels();
+    } catch (error) {
+      console.error('Error al alternar estado de la habitación:', error);
+    }
   };
 
   if (loading) {
@@ -89,7 +107,6 @@ const HotelManagement: React.FC = () => {
     <div className="bg-white rounded-xl shadow p-4">
       <h2 className="text-2xl font-semibold mb-4 text-indigo-600">Gestión de Hoteles</h2>
       
-      {/* Formulario para crear un nuevo hotel */}
       <form onSubmit={handleCreateHotel} className="mb-6 border-b pb-4">
         <h3 className="text-xl font-bold mb-2">Crear Nuevo Hotel</h3>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
@@ -124,7 +141,6 @@ const HotelManagement: React.FC = () => {
         </button>
       </form>
 
-      {/* Listado de hoteles */}
       <ul className="space-y-4">
         {hotels.map((hotel) => (
           <li key={hotel.id} className="border-b pb-4">
@@ -144,7 +160,6 @@ const HotelManagement: React.FC = () => {
                 {hotel.enabled ? 'Habilitado' : 'Deshabilitado'}
               </button>
             </div>
-            {/* Habitaciones */}
             {hotel.rooms && hotel.rooms.length > 0 && (
               <div className="ml-4 mt-2">
                 <h5 className="font-semibold mb-2">Habitaciones:</h5>
@@ -178,7 +193,6 @@ const HotelManagement: React.FC = () => {
         ))}
       </ul>
 
-      {/* Formulario para agregar una habitación a un hotel */}
       <div className="mt-6">
         <h3 className="text-xl font-bold mb-2">Agregar Habitación</h3>
         <form onSubmit={handleAddRoom}>
