@@ -1,4 +1,3 @@
-# frontend-technical-test
 # HU: Administración de alojamiento hoteles locales
 
 Esta HU se centra en que el agente de viajes pueda gestionar su lista de hoteles. A continuación se detalla lo implementado:
@@ -9,11 +8,11 @@ Esta HU se centra en que el agente de viajes pueda gestionar su lista de hoteles
 - ✅ **Asignar habitaciones al hotel:**  
   Se puede agregar una habitación a un hotel, ingresando el tipo de habitación, ubicación, costo base e impuestos.
 
-- ⚠️ **Modificar los valores de cada habitación:**  
-  Se implementa la funcionalidad de habilitar/deshabilitar habitaciones, pero la edición completa de valores (como costo base e impuestos) no se encuentra en la interfaz actual.
+- ✅ **Modificar los valores de cada habitación:**  
+  Se implementa la funcionalidad de habilitar/deshabilitar habitaciones y edición completa de valores (como costo base e impuestos).
 
-- ⚠️ **Modificar los datos de cada hotel:**  
-  Aunque se cuenta con la función `updateHotel` en el servicio, en la interfaz actual no se ha implementado un formulario para editar los datos completos del hotel.
+- ✅ **Modificar los datos de cada hotel:**  
+  Se permite modificar los datos de cada hotel.
 
 - ✅ **Habilitar/Deshabilitar cada hotel:**  
   Se puede alternar el estado (habilitado/deshabilitado) de cada hotel mediante un botón.
