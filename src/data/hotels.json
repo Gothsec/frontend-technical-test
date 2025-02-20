@@ -10,16 +10,16 @@
         "id": 1,
         "type": "Sencilla",
         "location": "Planta Baja",
-        "costBase": 100,
-        "taxes": 20,
+        "costBase": 50000,
+        "taxes": 2000,
         "enabled": true
       },
       {
         "id": 2,
         "type": "Doble",
         "location": "Primer Piso",
-        "costBase": 150,
-        "taxes": 30,
+        "costBase": 90000,
+        "taxes": 4000,
         "enabled": true
       }
     ]
@@ -35,8 +35,8 @@
         "id": 1,
         "type": "Doble",
         "location": "Segundo Piso",
-        "costBase": 120,
-        "taxes": 25,
+        "costBase": 120000,
+        "taxes": 5000,
         "enabled": true
       }
     ]
@@ -52,8 +52,33 @@
         "id": 1,
         "type": "Sencilla",
         "location": "Primer Piso",
-        "costBase": 20,
-        "taxes": 30,
+        "costBase": 45000,
+        "taxes": 1500,
+        "enabled": true
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "name": "Hotel Clarita",
+    "city": "Tulua",
+    "description": "Hotel en el sur de Tulua.",
+    "enabled": true,
+    "rooms": [
+      {
+        "id": 1,
+        "type": "Sencilla",
+        "location": "Primer Piso",
+        "costBase": 40000,
+        "taxes": 2000,
+        "enabled": true
+      },
+      {
+        "id": 2,
+        "type": "Doble",
+        "location": "Segundo piso",
+        "costBase": 80000,
+        "taxes": 5000,
         "enabled": true
       }
     ]

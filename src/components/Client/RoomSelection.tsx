@@ -49,11 +49,11 @@ const RoomsSelection = () => {
               <p className="font-bold">
                 {room.type} - {room.location}
               </p>
-              <p className="text-gray-600">Costo base: {room.costBase} €</p>
-              <p className="text-gray-600">Impuestos: {room.taxes} €</p>
+              <p className="text-gray-600">Costo base: ${room.costBase}</p>
+              <p className="text-gray-600">Impuestos: ${room.taxes}</p>
               <button
                 onClick={() => handleReserve(room)}
-                className="mt-2 bg-indigo-500 text-white px-4 py-2 rounded hover:bg-indigo-600 transition"
+                className="mt-2 bg-indigo-500 text-white px-4 py-2 rounded hover:bg-indigo-600 transition cursor-pointer"
               >
                 Reservar
               </button>

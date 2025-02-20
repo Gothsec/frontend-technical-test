@@ -35,7 +35,7 @@ const HotelSearch = () => {
           <h1 className="text-2xl font-bold text-indigo-600">Hotel App</h1>
           <button
             onClick={() => navigate('/login')}
-            className="bg-indigo-500 text-white px-4 py-2 rounded-lg hover:bg-indigo-600 transition"
+            className="bg-indigo-500 text-white px-4 py-2 rounded-lg hover:bg-indigo-600 transition cursor-pointer"
           >
             Iniciar Sesión como Agente
           </button>
@@ -109,7 +109,7 @@ const HotelSearch = () => {
             </div>
             <button
               type="submit"
-              className="w-full bg-indigo-600 text-white font-semibold py-3 px-4 rounded-lg hover:bg-indigo-700 transition"
+              className="w-full bg-indigo-600 text-white font-semibold py-3 px-4 rounded-lg hover:bg-indigo-700 transition cursor-pointer"
             >
               Buscar Hoteles
             </button>
@@ -126,7 +126,7 @@ const HotelSearch = () => {
                       <p className="text-gray-700 mb-4">{hotel.description}</p>
                       <button
                         onClick={() => handleSelectHotel(hotel.id)}
-                        className="bg-indigo-500 text-white px-4 py-2 rounded-lg hover:bg-indigo-600 transition"
+                        className="bg-indigo-500 text-white px-4 py-2 rounded-lg hover:bg-indigo-600 transition cursor-pointer"
                       >
                         Ver Habitaciones
                       </button>
