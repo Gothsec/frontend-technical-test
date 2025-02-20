@@ -1,3 +1,40 @@
+# Estructura
+```
+hotel-management-app/
+├── package.json
+├── tsconfig.json
+├── vite.config.ts
+├── staticwebapp.config.json
+├── public/
+│   └── hotel.svg
+└── src/
+    ├── App.tsx
+    ├── main.tsx
+    ├── app.css
+    ├── data/
+    │   ├── agent.json
+    │   ├── hotels.json
+    │   └── reservations.json
+    ├── services/
+    │   ├── authService.ts
+    │   ├── hotelService.ts
+    │   ├── hotelAgentService.ts
+    │   └── reservationService.ts
+    └── components/
+        ├── Agent/
+        │   ├── AgentLogin.tsx
+        │   ├── AgentDashboard.tsx
+        │   ├── HotelManagement.tsx
+        │   └── ReservationManagement.tsx
+        └── Client/
+            ├── HotelSearch.tsx
+            ├── RoomSelection.tsx
+            ├── ReservationForm.tsx
+            └── ReservationSuccess.tsx
+```
+
+
+
 # HU: Administración de alojamiento hoteles locales
 
 Esta HU se centra en que el agente de viajes pueda gestionar su lista de hoteles. A continuación se detalla lo implementado:
