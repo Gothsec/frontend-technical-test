@@ -1,6 +1,6 @@
 # Estructura
 ```
-hotel-management-app/
+frontend-techincal-test/
 ├── package.json
 ├── tsconfig.json
 ├── vite.config.ts
