@@ -17,7 +17,7 @@ const ReservationSuccess = () => {
         </p>
         <button
           onClick={goToHome}
-          className="bg-indigo-500 text-white px-4 py-2 rounded hover:bg-indigo-600 transition"
+          className="bg-indigo-500 text-white px-4 py-2 rounded hover:bg-indigo-600 transition cursor-pointer"
         >
           Volver al Inicio
         </button>

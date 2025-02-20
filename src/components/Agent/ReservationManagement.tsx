@@ -52,7 +52,7 @@ const ReservationManagement = () => {
               </div>
               <button
                 onClick={() => handleViewDetail(res)}
-                className="bg-indigo-500 text-white px-3 py-1 rounded-lg hover:bg-indigo-600 transition"
+                className="bg-indigo-500 text-white px-3 py-1 rounded-lg hover:bg-indigo-600 transition cursor-pointer"
               >
                 Ver Detalle
               </button>
@@ -96,7 +96,7 @@ const ReservationManagement = () => {
 
           <button
             onClick={closeDetail}
-            className="mt-4 bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 transition"
+            className="mt-4 bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 transition cursor-pointer"
           >
             Cerrar
           </button>

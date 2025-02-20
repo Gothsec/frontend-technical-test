@@ -197,7 +197,7 @@ const HotelManagement = () => {
         />
         <button
           type="submit"
-          className="bg-indigo-500 text-white px-4 py-2 rounded-lg hover:bg-indigo-600 transition"
+          className="bg-indigo-500 text-white px-4 py-2 rounded-lg hover:bg-indigo-600 transition cursor-pointer"
         >
           Agregar Hotel
         </button>
@@ -235,13 +235,13 @@ const HotelManagement = () => {
                 <div className="flex space-x-2">
                   <button
                     onClick={() => handleSaveHotel(hotel.id)}
-                    className="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 transition"
+                    className="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 transition cursor-pointer"
                   >
                     Guardar
                   </button>
                   <button
                     onClick={handleCancelEditHotel}
-                    className="bg-gray-300 text-black px-4 py-2 rounded-lg hover:bg-gray-400 transition"
+                    className="bg-gray-300 text-black px-4 py-2 rounded-lg hover:bg-gray-400 transition cursor-pointer"
                   >
                     Cancelar
                   </button>
@@ -260,7 +260,7 @@ const HotelManagement = () => {
                     onClick={() =>
                       handleEditHotelClick(hotel.id, hotel.name, hotel.city, hotel.description)
                     }
-                    className="bg-blue-500 text-white px-3 py-1 rounded-lg hover:bg-blue-600 transition"
+                    className="bg-blue-500 text-white px-3 py-1 rounded-lg hover:bg-blue-600 transition cursor-pointer"
                   >
                     Editar
                   </button>
@@ -268,8 +268,8 @@ const HotelManagement = () => {
                     onClick={() => handleToggleHotel(hotel.id)}
                     className={`px-3 py-1 rounded-lg text-white ${
                       hotel.enabled
-                        ? 'bg-green-500 hover:bg-green-600'
-                        : 'bg-red-500 hover:bg-red-600'
+                        ? 'bg-green-500 hover:bg-green-600 cursor-pointer'
+                        : 'bg-red-500 hover:bg-red-600 cursor-pointer'
                     }`}
                   >
                     {hotel.enabled ? 'Habilitado' : 'Deshabilitado'}
@@ -329,7 +329,7 @@ const HotelManagement = () => {
                             {room.type} - {room.location}
                           </span>
                           <span className="text-sm text-gray-600 ml-2">
-                            (Base: {room.costBase}€, Imp: {room.taxes}€)
+                            (Base: ${room.costBase}, Imp: ${room.taxes})
                           </span>
                         </div>
                       )}
@@ -338,13 +338,13 @@ const HotelManagement = () => {
                         <div className="space-x-2">
                           <button
                             onClick={() => handleSaveRoom(hotel.id, room.id)}
-                            className="bg-green-500 text-white px-2 py-1 rounded-lg hover:bg-green-600 transition text-sm"
+                            className="bg-green-500 text-white px-2 py-1 rounded-lg hover:bg-green-600 transition text-sm cursor-pointer"
                           >
                             Guardar
                           </button>
                           <button
                             onClick={handleCancelEditRoom}
-                            className="bg-gray-300 text-black px-2 py-1 rounded-lg hover:bg-gray-400 transition text-sm"
+                            className="bg-gray-300 text-black px-2 py-1 rounded-lg hover:bg-gray-400 transition text-sm cursor-pointer"
                           >
                             Cancelar
                           </button>
@@ -362,7 +362,7 @@ const HotelManagement = () => {
                                 room.taxes
                               )
                             }
-                            className="bg-blue-500 text-white px-2 py-1 rounded-lg hover:bg-blue-600 transition text-sm"
+                            className="bg-blue-500 text-white px-2 py-1 rounded-lg hover:bg-blue-600 transition text-sm cursor-pointer"
                           >
                             Editar
                           </button>
@@ -370,8 +370,8 @@ const HotelManagement = () => {
                             onClick={() => handleToggleRoom(hotel.id, room.id)}
                             className={`px-2 py-1 rounded-lg text-white text-sm ${
                               room.enabled
-                                ? 'bg-green-500 hover:bg-green-600'
-                                : 'bg-red-500 hover:bg-red-600'
+                                ? 'bg-green-500 hover:bg-green-600 cursor-pointer'
+                                : 'bg-red-500 hover:bg-red-600 cursor-pointer'
                             }`}
                           >
                             {room.enabled ? 'Habilitada' : 'Deshabilitada'}
@@ -444,7 +444,7 @@ const HotelManagement = () => {
           </div>
           <button
             type="submit"
-            className="bg-indigo-500 text-white px-4 py-2 rounded-lg hover:bg-indigo-600 transition"
+            className="bg-indigo-500 text-white px-4 py-2 rounded-lg hover:bg-indigo-600 transition cursor-pointer"
           >
             Agregar Habitación
           </button>
