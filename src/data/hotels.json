@@ -12,6 +12,7 @@
         "location": "Planta Baja",
         "costBase": 50000,
         "taxes": 2000,
+        "capacity": 1,
         "enabled": true
       },
       {
@@ -20,6 +21,7 @@
         "location": "Primer Piso",
         "costBase": 90000,
         "taxes": 4000,
+        "capacity": 2,
         "enabled": true
       }
     ]
@@ -37,6 +39,7 @@
         "location": "Segundo Piso",
         "costBase": 120000,
         "taxes": 5000,
+        "capacity": 2,
         "enabled": true
       }
     ]
@@ -54,6 +57,7 @@
         "location": "Primer Piso",
         "costBase": 45000,
         "taxes": 1500,
+        "capacity": 1,
         "enabled": true
       }
     ]
@@ -71,6 +75,7 @@
         "location": "Primer Piso",
         "costBase": 40000,
         "taxes": 2000,
+        "capacity": 1,
         "enabled": true
       },
       {
@@ -79,6 +84,7 @@
         "location": "Segundo piso",
         "costBase": 80000,
         "taxes": 5000,
+        "capacity": 2,
         "enabled": true
       }
     ]

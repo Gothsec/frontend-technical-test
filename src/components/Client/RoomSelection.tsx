@@ -43,13 +43,21 @@ const RoomsSelection = () => {
         </h2>
         <p className="text-gray-700 mb-4">{hotel.description}</p>
         <h3 className="text-xl font-semibold mb-2">Habitaciones disponibles:</h3>
+        {hotel.rooms.filter(room => room.capacity >= persons).length === 0 ? (
+        <p className="text-red-500 mb-4">
+            No hay habitaciones disponibles para {persons} {persons === 1 ? 'persona' : 'personas'}.
+        </p>
+        ) : (
         <ul>
-          {hotel.rooms.map((room) => (
+        {hotel.rooms
+        .filter((room) => room.capacity >= persons)
+        .map((room) => (
             <li key={room.id} className="mb-4 p-4 border rounded-lg">
               <p className="font-bold">
                 {room.type} - {room.location}
-              </p>
-              <p className="text-gray-600">Costo base: ${room.costBase}</p>
+            </p>
+            <p className="text-gray-600">Capacidad: {room.capacity} {room.capacity === 1 ? 'persona' : 'personas'}</p>
+            <p className="text-gray-600">Costo base: ${room.costBase}</p>
               <p className="text-gray-600">Impuestos: ${room.taxes}</p>
               <button
                 onClick={() => handleReserve(room)}
@@ -58,8 +66,9 @@ const RoomsSelection = () => {
                 Reservar
               </button>
             </li>
-          ))}
-        </ul>
+        ))}
+    </ul>
+    )}
       </div>
     </div>
   );
