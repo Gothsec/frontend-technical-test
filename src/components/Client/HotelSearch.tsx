@@ -3,13 +3,14 @@ import { useNavigate } from 'react-router-dom';
 import { fetchHotels, Hotel } from '../../services/hotelService';
 
 const HotelSearch = () => {
-  const [city, setCity] = useState('');
-  const [checkIn, setCheckIn] = useState('');
-  const [checkOut, setCheckOut] = useState('');
-  const [persons, setPersons] = useState<number>(1);
-  const [results, setResults] = useState<Hotel[]>([]);
-  const [searched, setSearched] = useState(false);
-  const [dateError, setDateError] = useState<string>('');
+const [city, setCity] = useState('');
+const [cities, setCities] = useState<string[]>([]);
+const [checkIn, setCheckIn] = useState('');
+const [checkOut, setCheckOut] = useState('');
+const [persons, setPersons] = useState<number>(1);
+const [results, setResults] = useState<Hotel[]>([]);
+const [searched, setSearched] = useState(false);
+const [dateError, setDateError] = useState<string>('');
 
   const navigate = useNavigate();
 
@@ -28,13 +29,25 @@ const HotelSearch = () => {
     if (!checkOut) {
       setCheckOut(formatDate(tomorrow));
     }
-  }, []);
+}, []);
 
-  useEffect(() => {
-    if (checkIn && checkOut) {
-      validateDates(checkIn, checkOut);
+useEffect(() => {
+const loadCities = async () => {
+    const hotels = await fetchHotels();
+    const uniqueCities = [...new Set(hotels.map((hotel: Hotel) => hotel.city))];
+    setCities(uniqueCities);
+    if (uniqueCities.length > 0 && !city) {
+    setCity(uniqueCities[0]);
     }
-  }, [checkIn, checkOut]);
+};
+loadCities();
+}, []);
+
+useEffect(() => {
+if (checkIn && checkOut) {
+    validateDates(checkIn, checkOut);
+}
+}, [checkIn, checkOut]);
 
   const validateDates = (inDate: string, outDate: string): boolean => {
     const today = new Date();
@@ -82,7 +95,7 @@ const HotelSearch = () => {
     
     const hotels = await fetchHotels();
     const filtered = hotels.filter((hotel: Hotel) =>
-      hotel.city.toLowerCase().includes(city.trim().toLowerCase())
+    hotel.city === city
     );
     setResults(filtered);
     setSearched(true);
@@ -123,15 +136,19 @@ const HotelSearch = () => {
               <label htmlFor="city" className="block text-gray-700 font-medium mb-2">
                 Ciudad de destino
               </label>
-              <input
-                type="text"
-                id="city"
-                value={city}
-                onChange={(e) => setCity(e.target.value)}
-                className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500"
-                placeholder="Ingresa la ciudad"
-                required
-              />
+            <select
+            id="city"
+            value={city}
+            onChange={(e) => setCity(e.target.value)}
+            className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+            required
+            >
+            {cities.map((cityOption) => (
+                <option key={cityOption} value={cityOption}>
+                {cityOption}
+                </option>
+            ))}
+            </select>
             </div>
             <div className="mb-6 grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
