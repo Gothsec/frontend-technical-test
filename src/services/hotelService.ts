@@ -1,12 +1,13 @@
 import hotelsData from '../data/hotels.json';
 
 export interface Room {
-  id: number;
-  type: string;
-  location: string;
-  costBase: number;
-  taxes: number;
-  enabled: boolean;
+id: number;
+type: string;
+location: string;
+costBase: number;
+taxes: number;
+enabled: boolean;
+capacity: number;
 }
 
 export interface Hotel {

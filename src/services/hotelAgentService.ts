@@ -91,7 +91,8 @@ export const addRoomToHotel = async (
   type: string,
   location: string,
   costBase: number,
-  taxes: number
+  taxes: number,
+  capacity: number
 ): Promise<Room | null> => {
   return new Promise((resolve) => {
     setTimeout(() => {
@@ -106,7 +107,8 @@ export const addRoomToHotel = async (
         location,
         costBase,
         taxes,
-        enabled: true
+        enabled: true,
+        capacity
       };
       hotels[hotelIndex].rooms.push(newRoom);
       resolve(newRoom);
@@ -120,7 +122,8 @@ export const updateRoom = async (
   type: string,
   location: string,
   costBase: number,
-  taxes: number
+  taxes: number,
+  capacity: number
 ): Promise<Room | null> => {
   return new Promise((resolve) => {
     setTimeout(() => {
@@ -138,6 +141,7 @@ export const updateRoom = async (
       hotels[hotelIndex].rooms[roomIndex].location = location;
       hotels[hotelIndex].rooms[roomIndex].costBase = costBase;
       hotels[hotelIndex].rooms[roomIndex].taxes = taxes;
+      hotels[hotelIndex].rooms[roomIndex].capacity = capacity;
       resolve(hotels[hotelIndex].rooms[roomIndex]);
     }, 300);
   });
