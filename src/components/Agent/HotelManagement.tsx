@@ -108,7 +108,8 @@ const HotelManagement = () => {
         roomType,
         roomLocation,
         roomCostBase,
-        roomTaxes
+        roomTaxes,
+        0 // Add a default capacity value or replace with a state variable if needed
       );
 
       setSelectedHotelId(null);
@@ -140,7 +141,7 @@ const HotelManagement = () => {
 
   const handleSaveRoom = async (hotelId: number, roomId: number) => {
     try {
-      await updateRoom(hotelId, roomId, editRoomType, editRoomLocation, editRoomCostBase, editRoomTaxes);
+      await updateRoom(hotelId, roomId, editRoomType, editRoomLocation, editRoomCostBase, editRoomTaxes, 0); // Add a default capacity value or replace with a state variable if needed
       setEditingRoom(null);
       loadHotels();
     } catch (error) {
