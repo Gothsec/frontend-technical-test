@@ -309,7 +309,7 @@ const HotelManagement = () => {
                               type="number"
                               value={editRoomCostBase}
                               onChange={(e) => setEditRoomCostBase(Number(e.target.value))}
-                              placeholder="Costo base"
+                            placeholder="Costo Base (en COP)"
                               className="border rounded-lg px-2 py-1 focus:outline-none"
                               required
                             />
@@ -317,7 +317,7 @@ const HotelManagement = () => {
                               type="number"
                               value={editRoomTaxes}
                               onChange={(e) => setEditRoomTaxes(Number(e.target.value))}
-                              placeholder="Impuestos"
+                            placeholder="Impuestos (en COP)"
                               className="border rounded-lg px-2 py-1 focus:outline-none"
                               required
                             />
@@ -329,7 +329,7 @@ const HotelManagement = () => {
                             {room.type} - {room.location}
                           </span>
                           <span className="text-sm text-gray-600 ml-2">
-                            (Base: ${room.costBase}, Imp: ${room.taxes})
+                            (Base: ${room.costBase} COP, Imp: ${room.taxes} COP)
                           </span>
                         </div>
                       )}
@@ -406,42 +406,55 @@ const HotelManagement = () => {
               ))}
             </select>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+        <div>
+            <label className="block text-sm font-semibold mb-1">Tipo de habitación</label>
             <input
-              type="text"
-              placeholder="Tipo de habitación (Sencilla, Doble, etc.)"
-              value={roomType}
-              onChange={(e) => setRoomType(e.target.value)}
-              className="border rounded-lg px-3 py-2 focus:outline-none"
-              required
+            type="text"
+            placeholder="Tipo de habitación (Sencilla, Doble, etc.)"
+            value={roomType}
+            onChange={(e) => setRoomType(e.target.value)}
+            className="border rounded-lg px-3 py-2 focus:outline-none w-full"
+            required
             />
+        </div>
+        <div>
+            <label className="block text-sm font-semibold mb-1">Ubicación</label>
             <input
-              type="text"
-              placeholder="Ubicación (Planta Baja, etc.)"
-              value={roomLocation}
-              onChange={(e) => setRoomLocation(e.target.value)}
-              className="border rounded-lg px-3 py-2 focus:outline-none"
-              required
+            type="text"
+            placeholder="Ubicación (Planta Baja, etc.)"
+            value={roomLocation}
+            onChange={(e) => setRoomLocation(e.target.value)}
+            className="border rounded-lg px-3 py-2 focus:outline-none w-full"
+            required
             />
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+        </div>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+        <div>
+            <label className="block text-sm font-semibold mb-1">Costo Base</label>
             <input
-              type="number"
-              placeholder="Costo Base"
-              value={roomCostBase}
-              onChange={(e) => setRoomCostBase(Number(e.target.value))}
-              className="border rounded-lg px-3 py-2 focus:outline-none"
-              required
+            type="number"
+            placeholder="Costo Base (en COP)"
+            value={roomCostBase}
+            onChange={(e) => setRoomCostBase(Number(e.target.value))}
+            className="border rounded-lg px-3 py-2 focus:outline-none w-full"
+            required
             />
+        </div>
+        <div>
+            <label className="block text-sm font-semibold mb-1">Impuestos</label>
             <input
-              type="number"
-              placeholder="Impuestos"
-              value={roomTaxes}
-              onChange={(e) => setRoomTaxes(Number(e.target.value))}
-              className="border rounded-lg px-3 py-2 focus:outline-none"
-              required
+            type="number"
+            placeholder="Impuestos (en COP)"
+            value={roomTaxes}
+            onChange={(e) => setRoomTaxes(Number(e.target.value))}
+            className="border rounded-lg px-3 py-2 focus:outline-none w-full"
+            required
             />
-          </div>
+        </div>
+        </div>
+        <p className="text-gray-500 text-sm mb-4">Los valores deben ingresarse en Pesos Colombianos (COP)</p>
           <button
             type="submit"
             className="bg-indigo-500 text-white px-4 py-2 rounded-lg hover:bg-indigo-600 transition cursor-pointer"
