@@ -51,10 +51,7 @@ const ReservationForm = () => {
     emergencyContact: {},
   });
 
-  const validateField = (
-    field: string,
-    value: string
-  ): string => {
+  const validateField = (field: string, value: string): string => {
     const today = new Date();
     today.setHours(0, 0, 0, 0);
 
@@ -181,10 +178,7 @@ const ReservationForm = () => {
     passengers.forEach((passenger, index) => {
       newErrors.passengers[index] = {};
       Object.entries(passenger).forEach(([field, value]) => {
-        const error = validateField(
-          field,
-          value.toString()
-        );
+        const error = validateField(field, value.toString());
         if (error) {
           newErrors.passengers[index][field as keyof Passenger] = error;
           isValid = false;
@@ -234,7 +228,6 @@ const ReservationForm = () => {
       navigate("/success");
     } catch (error) {
       console.error("Error creating reservation:", error);
-      // Manejar el error según corresponda
     }
   };
 
@@ -353,23 +346,23 @@ const ReservationForm = () => {
                   Fecha de Nacimiento
                 </label>
                 <input
-                type="date"
-                className={`w-full border rounded-lg px-3 py-2 focus:outline-none ${
+                  type="date"
+                  className={`w-full border rounded-lg px-3 py-2 focus:outline-none ${
                     hasError("passengers", index, "birthDate")
-                    ? "border-red-500"
-                    : ""
-                }`}
-                value={passenger.birthDate}
-                max={today}
-                onChange={(e) =>
+                      ? "border-red-500"
+                      : ""
+                  }`}
+                  value={passenger.birthDate}
+                  max={today}
+                  onChange={(e) =>
                     handlePassengerChange(index, "birthDate", e.target.value)
-                }
-                required
+                  }
+                  required
                 />
                 {!hasError("passengers", index, "birthDate") && (
-                <p className="text-gray-500 text-xs mt-1">
+                  <p className="text-gray-500 text-xs mt-1">
                     La fecha no puede ser en el futuro
-                </p>
+                  </p>
                 )}
                 {hasError("passengers", index, "birthDate") && (
                   <p className="text-red-500 text-sm mt-1 error-message">
@@ -482,24 +475,24 @@ const ReservationForm = () => {
               <div>
                 <label className="block text-gray-700 mb-1">Teléfono</label>
                 <input
-                type="tel"
-                className={`w-full border rounded-lg px-3 py-2 focus:outline-none ${
+                  type="tel"
+                  className={`w-full border rounded-lg px-3 py-2 focus:outline-none ${
                     hasError("passengers", index, "phone")
-                    ? "border-red-500"
-                    : ""
-                }`}
-                value={passenger.phone}
-                onChange={(e) =>
+                      ? "border-red-500"
+                      : ""
+                  }`}
+                  value={passenger.phone}
+                  onChange={(e) =>
                     handlePassengerChange(index, "phone", e.target.value)
-                }
-                placeholder="Ej: +51 999 888 777"
-                pattern="[0-9+ ]+"
-                required
+                  }
+                  placeholder="Ej: +51 999 888 777"
+                  pattern="[0-9+ ]+"
+                  required
                 />
                 {!hasError("passengers", index, "phone") && (
-                <p className="text-gray-500 text-xs mt-1">
+                  <p className="text-gray-500 text-xs mt-1">
                     Solo se permiten números, espacios y el signo +
-                </p>
+                  </p>
                 )}
                 {hasError("passengers", index, "phone") && (
                   <p className="text-red-500 text-sm mt-1 error-message">
@@ -537,24 +530,24 @@ const ReservationForm = () => {
           <label className="block text-gray-700 mb-1">
             Teléfono de Contacto
           </label>
-        <input
-        type="tel"
-        className={`w-full border rounded-lg px-3 py-2 focus:outline-none ${
-            hasError("emergencyContact", null, "phone")
-            ? "border-red-500"
-            : ""
-        }`}
-        value={emergencyContact.phone}
-        onChange={(e) => handleEmergencyChange("phone", e.target.value)}
-        placeholder="Ej: +51 999 888 777"
-        pattern="[0-9+ ]+"
-        required
-        />
-        {!hasError("emergencyContact", null, "phone") && (
-        <p className="text-gray-500 text-xs mt-1">
-            Solo se permiten números, espacios y el signo +
-        </p>
-        )}
+          <input
+            type="tel"
+            className={`w-full border rounded-lg px-3 py-2 focus:outline-none ${
+              hasError("emergencyContact", null, "phone")
+                ? "border-red-500"
+                : ""
+            }`}
+            value={emergencyContact.phone}
+            onChange={(e) => handleEmergencyChange("phone", e.target.value)}
+            placeholder="Ej: +51 999 888 777"
+            pattern="[0-9+ ]+"
+            required
+          />
+          {!hasError("emergencyContact", null, "phone") && (
+            <p className="text-gray-500 text-xs mt-1">
+              Solo se permiten números, espacios y el signo +
+            </p>
+          )}
           {hasError("emergencyContact", null, "phone") && (
             <p className="text-red-500 text-sm mt-1 error-message">
               {getErrorMessage("emergencyContact", null, "phone")}

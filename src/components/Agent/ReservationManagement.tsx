@@ -1,10 +1,14 @@
-import { useEffect, useState } from 'react';
-import { fetchReservations, Reservation } from '../../services/reservationService';
+import { useEffect, useState } from "react";
+import {
+  fetchReservations,
+  Reservation,
+} from "../../services/reservationService";
 
 const ReservationManagement = () => {
   const [reservations, setReservations] = useState<Reservation[]>([]);
   const [loading, setLoading] = useState(true);
-  const [selectedReservation, setSelectedReservation] = useState<Reservation | null>(null);
+  const [selectedReservation, setSelectedReservation] =
+    useState<Reservation | null>(null);
 
   useEffect(() => {
     loadReservations();
@@ -28,7 +32,9 @@ const ReservationManagement = () => {
   if (loading) {
     return (
       <div className="bg-white rounded-xl shadow p-4">
-        <h2 className="text-2xl font-semibold mb-4 text-indigo-600">Gestión de Reservas</h2>
+        <h2 className="text-2xl font-semibold mb-4 text-indigo-600">
+          Gestión de Reservas
+        </h2>
         <p>Cargando reservas...</p>
       </div>
     );
@@ -36,10 +42,15 @@ const ReservationManagement = () => {
 
   return (
     <div className="bg-white rounded-xl shadow p-4">
-      <h2 className="text-2xl font-semibold mb-4 text-indigo-600">Gestión de Reservas</h2>
+      <h2 className="text-2xl font-semibold mb-4 text-indigo-600">
+        Gestión de Reservas
+      </h2>
       <ul className="space-y-4">
         {reservations.map((res) => (
-          <li key={res.hotelId + '-' + res.roomId + '-' + res.checkIn} className="border-b pb-2">
+          <li
+            key={res.hotelId + "-" + res.roomId + "-" + res.checkIn}
+            className="border-b pb-2"
+          >
             <div className="flex justify-between items-center">
               <div>
                 <p className="font-bold">
@@ -74,7 +85,7 @@ const ReservationManagement = () => {
             <strong>Ciudad:</strong> {selectedReservation.city}
           </p>
           <p>
-            <strong>Check In:</strong> {selectedReservation.checkIn} |{' '}
+            <strong>Check In:</strong> {selectedReservation.checkIn} |{" "}
             <strong>Check Out:</strong> {selectedReservation.checkOut}
           </p>
           <p>
@@ -90,7 +101,7 @@ const ReservationManagement = () => {
 
           <h4 className="mt-4 font-semibold">Contacto de Emergencia:</h4>
           <div className="ml-4 text-sm text-gray-700">
-            {selectedReservation.emergencyContact.fullName} -{' '}
+            {selectedReservation.emergencyContact.fullName} -{" "}
             {selectedReservation.emergencyContact.phone}
           </div>
 
