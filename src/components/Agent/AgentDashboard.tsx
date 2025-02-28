@@ -1,5 +1,5 @@
-import HotelManagement from './HotelManagement';
-import ReservationManagement from './ReservationManagement';
+import HotelManagement from "./HotelManagement";
+import ReservationManagement from "./ReservationManagement";
 
 const AgentDashboard = () => {
   return (

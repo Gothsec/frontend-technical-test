@@ -1,11 +1,11 @@
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { loginAgent } from '../../services/authService';
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { loginAgent } from "../../services/authService";
 
 const AgentLogin = () => {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  const [errorMsg, setErrorMsg] = useState('');
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [errorMsg, setErrorMsg] = useState("");
   const navigate = useNavigate();
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -13,10 +13,10 @@ const AgentLogin = () => {
 
     const agent = await loginAgent(username, password);
     if (agent) {
-      setErrorMsg('');
-      navigate('/dashboard');
+      setErrorMsg("");
+      navigate("/dashboard");
     } else {
-      setErrorMsg('Credenciales inválidas. Por favor, intente nuevamente.');
+      setErrorMsg("Credenciales inválidas. Por favor, intente nuevamente.");
     }
   };
 
@@ -73,7 +73,9 @@ const AgentLogin = () => {
             Iniciar Sesión
           </button>
         </form>
-        <p className='text-[#0000004a] mt-3'>usuario: agent <br /> contraseña: password123</p>
+        <p className="text-[#0000004a] mt-3">
+          usuario: agent <br /> contraseña: password123
+        </p>
       </div>
     </div>
   );
