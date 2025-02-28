@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { fetchHotels, Hotel } from '../../services/hotelService';
 
@@ -9,11 +9,77 @@ const HotelSearch = () => {
   const [persons, setPersons] = useState<number>(1);
   const [results, setResults] = useState<Hotel[]>([]);
   const [searched, setSearched] = useState(false);
+  const [dateError, setDateError] = useState<string>('');
 
   const navigate = useNavigate();
 
+  useEffect(() => {
+    const today = new Date();
+    const tomorrow = new Date(today);
+    tomorrow.setDate(tomorrow.getDate() + 1);
+    
+    const formatDate = (date: Date) => {
+      return date.toISOString().split('T')[0];
+    };
+    
+    if (!checkIn) {
+      setCheckIn(formatDate(today));
+    }
+    if (!checkOut) {
+      setCheckOut(formatDate(tomorrow));
+    }
+  }, []);
+
+  useEffect(() => {
+    if (checkIn && checkOut) {
+      validateDates(checkIn, checkOut);
+    }
+  }, [checkIn, checkOut]);
+
+  const validateDates = (inDate: string, outDate: string): boolean => {
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    
+    const checkInDate = new Date(inDate);
+    const checkOutDate = new Date(outDate);
+    
+    if (checkInDate < today) {
+      setDateError('La fecha de entrada no puede ser en el pasado');
+      return false;
+    }
+    
+    if (checkOutDate <= checkInDate) {
+      setDateError('La fecha de salida debe ser posterior a la fecha de entrada');
+      return false;
+    }
+    
+    setDateError('');
+    return true;
+  };
+
+  const handleCheckInChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const newCheckIn = e.target.value;
+    setCheckIn(newCheckIn);
+    
+    if (checkOut) {
+      const checkInDate = new Date(newCheckIn);
+      const checkOutDate = new Date(checkOut);
+      
+      if (checkOutDate <= checkInDate) {
+        const newCheckOutDate = new Date(checkInDate);
+        newCheckOutDate.setDate(newCheckOutDate.getDate() + 1);
+        setCheckOut(newCheckOutDate.toISOString().split('T')[0]);
+      }
+    }
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    
+    if (!validateDates(checkIn, checkOut)) {
+      return;
+    }
+    
     const hotels = await fetchHotels();
     const filtered = hotels.filter((hotel: Hotel) =>
       hotel.city.toLowerCase().includes(city.trim().toLowerCase())
@@ -27,6 +93,8 @@ const HotelSearch = () => {
       state: { hotelId, city, checkIn, checkOut, persons },
     });
   };
+
+  const today = new Date().toISOString().split('T')[0];
 
   return (
     <div className="min-h-screen bg-gray-100 flex flex-col">
@@ -74,7 +142,8 @@ const HotelSearch = () => {
                   type="date"
                   id="checkIn"
                   value={checkIn}
-                  onChange={(e) => setCheckIn(e.target.value)}
+                  onChange={handleCheckInChange}
+                  min={today}
                   className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500"
                   required
                 />
@@ -88,11 +157,17 @@ const HotelSearch = () => {
                   id="checkOut"
                   value={checkOut}
                   onChange={(e) => setCheckOut(e.target.value)}
+                  min={checkIn ? new Date(new Date(checkIn).getTime() + 86400000).toISOString().split('T')[0] : today}
                   className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500"
                   required
                 />
               </div>
             </div>
+            {dateError && (
+              <div className="mb-6 p-3 bg-red-100 text-red-700 rounded-lg">
+                {dateError}
+              </div>
+            )}
             <div className="mb-6">
               <label htmlFor="persons" className="block text-gray-700 font-medium mb-2">
                 Cantidad de personas
