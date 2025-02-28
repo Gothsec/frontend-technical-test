@@ -5,10 +5,6 @@ import { fetchHotels, Hotel } from "../../services/hotelService";
 const HotelSearch = () => {
   const [city, setCity] = useState("");
   const [cities, setCities] = useState<string[]>([]);
-  const [inputValue, setInputValue] = useState("");
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const [filteredCities, setFilteredCities] = useState<string[]>([]);
-  const dropdownRef = useRef<HTMLDivElement>(null);
   const [checkIn, setCheckIn] = useState("");
   const [checkOut, setCheckOut] = useState("");
   const [persons, setPersons] = useState<number>(1);
@@ -30,33 +26,6 @@ const HotelSearch = () => {
     };
     loadCities();
   }, []);
-
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (
-        dropdownRef.current &&
-        !dropdownRef.current.contains(event.target as Node)
-      ) {
-        setIsDropdownOpen(false);
-      }
-    };
-
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, []);
-
-  useEffect(() => {
-    if (inputValue) {
-      const filtered = cities.filter((cityItem) =>
-        cityItem.toLowerCase().includes(inputValue.toLowerCase())
-      );
-      setFilteredCities(filtered);
-    } else {
-      setFilteredCities(cities);
-    }
-  }, [inputValue, cities]);
 
   useEffect(() => {
     if (checkIn && checkOut) {
@@ -174,48 +143,24 @@ const HotelSearch = () => {
               >
                 Ciudad de destino
               </label>
-              <div className="relative" ref={dropdownRef}>
-                <input
+              <div className="relative">
+                <select
                   id="city"
-                  type="text"
-                  value={inputValue}
-                  onChange={(e) => {
-                    setInputValue(e.target.value);
-                    setIsDropdownOpen(true);
-                  }}
-                  onFocus={() => setIsDropdownOpen(true)}
-                  placeholder="Buscar ciudad..."
-                  className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                  value={city}
+                  onChange={(e) => setCity(e.target.value)}
+                  className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500 appearance-none cursor-pointer"
                   required
-                />
-                {isDropdownOpen && (
-                  <div className="absolute z-10 w-full mt-1 bg-white border border-gray-300 rounded-lg shadow-lg max-h-60 overflow-y-auto">
-                    {filteredCities.length > 0 ? (
-                      filteredCities.map((cityOption) => (
-                        <div
-                          key={cityOption}
-                          className={`px-4 py-2 cursor-pointer hover:bg-indigo-50 ${
-                            city === cityOption ? "bg-indigo-100" : ""
-                          }`}
-                          onClick={() => {
-                            setCity(cityOption);
-                            setInputValue(cityOption);
-                            setIsDropdownOpen(false);
-                          }}
-                        >
-                          {cityOption}
-                        </div>
-                      ))
-                    ) : (
-                      <div className="px-4 py-2 text-gray-500">
-                        No se encontraron ciudades
-                      </div>
-                    )}
-                  </div>
-                )}
-                <div className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
+                >
+                  <option value="">Selecciona una ciudad</option>
+                  {cities.map((cityOption) => (
+                    <option key={cityOption} value={cityOption}>
+                      {cityOption}
+                    </option>
+                  ))}
+                </select>
+                <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3 text-gray-700">
                   <svg
-                    className="h-5 w-5 text-gray-400"
+                    className="h-5 w-5"
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 20 20"
                     fill="currentColor"
