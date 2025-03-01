@@ -95,7 +95,7 @@ const ReservationManagement = () => {
           <h4 className="mt-4 font-semibold">Pasajeros:</h4>
           {selectedReservation.passengers.map((p, index) => (
             <div key={index} className="ml-4 text-sm text-gray-700">
-              {p.firstName} {p.lastName} - {p.documentType}: {p.documentNumber}
+              {p.firstName} {p.lastName} <br /> {p.documentType}: {p.documentNumber} <br /> {p.email}
             </div>
           ))}
 

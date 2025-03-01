@@ -347,7 +347,7 @@ const ReservationForm = () => {
                 </label>
                 <input
                   type="date"
-                  className={`w-full border rounded-lg px-3 py-2 focus:outline-none ${
+                  className={`w-full border rounded-lg px-3 py-2 focus:outline-none cursor-pointer ${
                     hasError("passengers", index, "birthDate")
                       ? "border-red-500"
                       : ""
@@ -373,7 +373,7 @@ const ReservationForm = () => {
               <div>
                 <label className="block text-gray-700 mb-1">Género</label>
                 <select
-                  className={`w-full border rounded-lg px-3 py-2 focus:outline-none ${
+                  className={`w-full border rounded-lg px-3 py-2 focus:outline-none cursor-pointer ${
                     hasError("passengers", index, "gender")
                       ? "border-red-500"
                       : ""
@@ -402,7 +402,7 @@ const ReservationForm = () => {
                   Tipo de Documento
                 </label>
                 <select
-                  className={`w-full border rounded-lg px-3 py-2 focus:outline-none ${
+                  className={`w-full border rounded-lg px-3 py-2 focus:outline-none cursor-pointer ${
                     hasError("passengers", index, "documentType")
                       ? "border-red-500"
                       : ""
@@ -414,6 +414,7 @@ const ReservationForm = () => {
                   required
                 >
                   <option value="">Seleccione</option>
+                  <option value="Cedula">Cedula</option>
                   <option value="DNI">DNI</option>
                   <option value="Pasaporte">Pasaporte</option>
                   <option value="Otro">Otro</option>

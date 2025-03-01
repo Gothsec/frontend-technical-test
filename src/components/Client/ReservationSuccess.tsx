@@ -15,7 +15,7 @@ const ReservationSuccess = () => {
         </h2>
         <p className="text-gray-700 mb-4">
           Tu reserva se ha realizado correctamente. Recibirás un correo
-          electrónico con los detalles de la reserva.
+          electrónico con los detalles de la reserva. (simulado)
         </p>
         <button
           onClick={goToHome}

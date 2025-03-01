@@ -188,7 +188,7 @@ const HotelSearch = () => {
                   value={checkIn}
                   onChange={handleCheckInChange}
                   min={today}
-                  className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                  className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500 cursor-pointer"
                   required
                 />
               </div>
@@ -211,7 +211,7 @@ const HotelSearch = () => {
                           .split("T")[0]
                       : today
                   }
-                  className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                  className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500 cursor-pointer"
                   required
                 />
               </div>
@@ -231,7 +231,7 @@ const HotelSearch = () => {
               <input
                 type="number"
                 id="persons"
-                value={persons}
+                value={persons === 0? "": persons}
                 onChange={(e) => setPersons(Number(e.target.value))}
                 className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500"
                 min={1}

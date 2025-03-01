@@ -446,7 +446,7 @@ const HotelManagement = () => {
             <select
               value={selectedHotelId ?? ""}
               onChange={(e) => setSelectedHotelId(Number(e.target.value))}
-              className="border rounded-lg px-3 py-2 w-full focus:outline-none"
+              className="border rounded-lg px-3 py-2 w-full focus:outline-none cursor-pointer"
               required
             >
               <option value="">Selecciona un hotel</option>
@@ -493,7 +493,7 @@ const HotelManagement = () => {
               <input
                 type="number"
                 placeholder="Costo Base (en COP)"
-                value={roomCostBase}
+                value={roomCostBase === 0? "": roomCostBase}
                 onChange={(e) => setRoomCostBase(Number(e.target.value))}
                 className="border rounded-lg px-3 py-2 focus:outline-none w-full"
                 required
@@ -506,7 +506,7 @@ const HotelManagement = () => {
               <input
                 type="number"
                 placeholder="Impuestos (en COP)"
-                value={roomTaxes}
+                value={roomTaxes === 0? "": roomTaxes}
                 onChange={(e) => setRoomTaxes(Number(e.target.value))}
                 className="border rounded-lg px-3 py-2 focus:outline-none w-full"
                 required
